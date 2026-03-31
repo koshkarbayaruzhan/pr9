@@ -1,15 +1,26 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import organization.*;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // Создаем сотрудников
+        Employee e1 = new Employee("Иван", "Разработчик", 1000, false);
+        Employee e2 = new Employee("Мария", "Аналитик", 1200, false);
+        Employee e3 = new Employee("Пётр", "Фрилансер", 500, true);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        // Создаем отделы и добавляем сотрудников
+        Department devDept = new Department("Разработка");
+        devDept.addComponent(e1);
+        devDept.addComponent(e3);
+
+        Department itDept = new Department("IT");
+        itDept.addComponent(devDept);
+        itDept.addComponent(e2);
+
+        // Показываем структуру
+        itDept.showDetails();
+
+        // Общий бюджет и количество сотрудников
+        System.out.println("Общий бюджет отдела: " + itDept.getBudget());
+        System.out.println("Общее количество сотрудников: " + itDept.getEmployeeCount());
     }
 }
